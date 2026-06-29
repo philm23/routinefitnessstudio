@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Routine Fitness Studio · Viseu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1A1008;
+  --rust:#A85C2A;
+  --amber:#C47A3A;
+  --honey:#C8813A;
+  --parchment:#EFE0C8;
+  --deep:#3D1F08;
+}
+html{scroll-behavior:smooth}
+body{background:var(--amber);color:var(--ink);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:10px;height:10px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;mix-blend-mode:normal}
+.cursor.big{width:60px;height:60px;opacity:.4}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 2.5rem}
+.nav-word{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:var(--parchment);text-decoration:none}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-r a{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--parchment);opacity:.65;text-decoration:none;transition:opacity .2s}
+.nav-r a:hover{opacity:1}
+.nav-pill{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem 1.2rem;border:1px solid var(--parchment);color:var(--parchment);text-decoration:none;opacity:.8;transition:background .25s,color .25s}
+.nav-pill:hover{background:var(--parchment);color:var(--ink);opacity:1}
+#hero{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:0 2.5rem 3rem;position:relative;overflow:hidden;background:url('hero.jpg') center center/cover no-repeat}
+#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,16,8,.35) 0%,rgba(26,16,8,.1) 40%,rgba(26,16,8,.55) 100%);z-index:0}
+.hero-top{display:flex;flex-direction:column;justify-content:flex-end;padding-top:30svh;position:relative;z-index:1}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1;padding-top:4rem}
+.hero-top{display:flex;flex-direction:column;justify-content:flex-end;padding-top:30svh;position:relative;z-index:1}
+.hero-location{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--parchment);opacity:.75;margin-bottom:1.2rem}
+.hero-h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(4rem,12vw,9.5rem);line-height:.9;color:var(--parchment);letter-spacing:-.02em}
+.hero-h1 span{display:block;padding-left:clamp(2rem,8vw,8rem);color:var(--parchment);opacity:.8}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1;padding-top:4rem}
+.hero-desc{font-size:.88rem;line-height:1.8;color:rgba(239,224,200,.8);max-width:28ch}
+.hero-tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--parchment);opacity:.45;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)}
+.marquee-wrap{overflow:hidden;border-top:1px solid rgba(196,122,58,.2);border-bottom:1px solid rgba(196,122,58,.2);background:var(--rust);padding:.65rem 0}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 18s linear infinite}
+.marquee-track span{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--parchment);opacity:.9;padding:0 2rem}
+.marquee-track span.dot{font-style:normal;font-size:.5rem;vertical-align:middle;opacity:.4;padding:0 .25rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#manifesto{padding:12vw 2.5rem;display:flex;align-items:center;justify-content:center;min-height:80svh;position:relative;background:var(--parchment)}
+.manifesto-text{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(2rem,5.5vw,5rem);line-height:1.15;max-width:16em;text-align:center;color:var(--ink)}
+.manifesto-text em{font-style:normal;color:var(--amber)}
+.manifesto-aside{position:absolute;right:2.5rem;bottom:4rem;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,16,8,.25)}
+#servicos{padding:0 0 8rem;background:var(--amber)}
+.servicos-label{padding:0 2.5rem 3rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.45}
+.servicos-list{list-style:none}
+.servico-item{display:grid;grid-template-columns:6rem 1fr auto;align-items:center;padding:2.2rem 2.5rem;border-top:1px solid rgba(26,16,8,.12);transition:background .3s}
+.servico-item:hover{background:rgba(26,16,8,.06)}
+.servico-item:hover .servico-name{color:var(--parchment)}
+.servico-item:last-child{border-bottom:1px solid rgba(26,16,8,.12)}
+.servico-num{font-size:.72rem;letter-spacing:.1em;color:rgba(26,16,8,.25)}
+.servico-name{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:400;color:var(--ink);transition:color .3s;line-height:1}
+.servico-desc{font-size:.78rem;line-height:1.7;color:rgba(26,16,8,.45);max-width:22ch;text-align:right}
+#planos{background:var(--parchment);color:var(--ink);padding:6rem 2.5rem}
+.planos-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4rem}
+.planos-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(2rem,5vw,4rem);color:var(--ink)}
+.planos-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);opacity:.7}
+.planos-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(26,16,8,.12)}
+.plano{padding:2.5rem 2rem 3rem;border-right:1px solid rgba(26,16,8,.12);display:flex;flex-direction:column;transition:background .3s}
+.plano:last-child{border-right:none}
+.plano:hover{background:rgba(168,92,42,.05)}
+.plano.destaque{background:var(--rust);color:var(--parchment)}
+.plano.destaque:hover{background:#8f4d22}
+.plano-nome{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;margin-bottom:auto;padding-bottom:1.5rem}
+.plano-price{font-size:3rem;font-weight:300;line-height:1;margin-bottom:.25rem}
+.plano-price sup{font-size:1rem;vertical-align:super}
+.plano-price sub{font-size:.9rem;vertical-align:bottom;opacity:.55}
+.plano-features{margin:1.5rem 0 2rem;list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.plano-features li{font-size:.82rem;line-height:1.5;color:rgba(26,16,8,.55);border-bottom:1px solid rgba(26,16,8,.07);padding-bottom:.6rem}
+.plano.destaque .plano-features li{color:rgba(239,224,200,.7);border-bottom-color:rgba(239,224,200,.12)}
+.plano-cta{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.8rem;text-align:center;text-decoration:none;border:1px solid var(--rust);color:var(--rust);transition:background .25s,color .25s;margin-top:auto;display:block}
+.plano-cta:hover{background:var(--rust);color:var(--parchment)}
+.plano.destaque .plano-cta{border-color:var(--parchment);color:var(--parchment)}
+.plano.destaque .plano-cta:hover{background:var(--parchment);color:var(--rust)}
+#contacto{min-height:100svh;display:grid;grid-template-columns:1fr 1fr}
+.contacto-esq{background:var(--rust);padding:6rem 3.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.contacto-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(3rem,6vw,5.5rem);color:var(--parchment);line-height:.95;letter-spacing:-.02em}
+.contacto-info{display:flex;flex-direction:column;gap:1.8rem}
+.ci-label{display:block;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,224,200,.4);margin-bottom:.3rem}
+.ci-val{font-size:.9rem;color:var(--parchment);opacity:.8}
+.contacto-dir{background:var(--deep);padding:6rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
+.form-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,224,200,.28);margin-bottom:2rem;display:block}
+.form-input{background:transparent;border:none;border-bottom:1px solid rgba(239,224,200,.12);padding:.9rem 0;font-family:'Inter',sans-serif;font-weight:300;font-size:.9rem;color:var(--parchment);outline:none;width:100%;transition:border-color .2s;display:block;margin-bottom:.75rem}
+.form-input::placeholder{color:rgba(239,224,200,.22)}
+.form-input:focus{border-bottom-color:var(--amber)}
+textarea.form-input{resize:none;height:100px}
+.form-btn{margin-top:2rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:.9rem 2.5rem;background:var(--amber);border:none;color:var(--ink);cursor:pointer;transition:background .25s}
+.form-btn:hover{background:var(--honey)}
+footer{background:var(--deep);border-top:1px solid rgba(239,224,200,.06);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.footer-word{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:rgba(239,224,200,.28)}
+.footer-copy{font-size:.65rem;letter-spacing:.1em;color:rgba(239,224,200,.18)}
+.footer-ig a{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,224,200,.28);text-decoration:none;transition:color .2s}
+.footer-ig a:hover{color:var(--amber)}
+@media(max-width:768px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-r a:not(.nav-pill){display:none}
+  #hero{padding:0 1.5rem 2.5rem}
+  .hero-tag{display:none}
+  .servico-item{grid-template-columns:2.5rem 1fr}
+  .servico-desc{display:none}
+  .planos-grid{grid-template-columns:1fr}
+  .plano{border-right:none;border-bottom:1px solid rgba(26,16,8,.12)}
+  .plano:last-child{border-bottom:none}
+  #contacto{grid-template-columns:1fr}
+  .contacto-esq{padding:4rem 1.5rem}
+  .contacto-dir{padding:4rem 1.5rem}
+  footer{flex-direction:column;gap:.75rem;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<nav>
+  <a class="nav-word" href="#">routine</a>
+  <div class="nav-r">
+    <a href="#servicos">Serviços</a>
+    <a href="#planos">Planos</a>
+    <a href="#contacto" class="nav-pill">Contacto</a>
+  </div>
+</nav>
+<section id="hero">
+  <div class="hero-top">
+    <p class="hero-location">Viseu, Portugal</p>
+    <h1 class="hero-h1">
+      fitness
+      <span>studio</span>
+    </h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">Um espaço criado para quem quer fazer do bem-estar parte do dia-a-dia — sem pressas, sem comparações.</p>
+    <span class="hero-tag">#bettereveryday</span>
+  </div>
+</section>
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Musculação</span><span class="dot">·</span><span>Personal Training</span><span class="dot">·</span><span>Aulas de Grupo</span><span class="dot">·</span><span>Treino Funcional</span><span class="dot">·</span><span>Nutrição</span><span class="dot">·</span><span>Recuperação</span><span class="dot">·</span><span>Musculação</span><span class="dot">·</span><span>Personal Training</span><span class="dot">·</span><span>Aulas de Grupo</span><span class="dot">·</span><span>Treino Funcional</span><span class="dot">·</span><span>Nutrição</span><span class="dot">·</span><span>Recuperação</span><span class="dot">·</span>
+  </div>
+</div>
+<section id="manifesto">
+  <p class="manifesto-text">
+    Não existe treino perfeito. Existe o treino que fazes <em>hoje,</em> amanhã, e na semana que vem.
+  </p>
+  <span class="manifesto-aside">routine fitness studio</span>
+</section>
+<section id="servicos">
+  <p class="servicos-label">O que fazemos</p>
+  <ul class="servicos-list">
+    <li class="servico-item">
+      <span class="servico-num">—</span>
+      <span class="servico-name">Musculação</span>
+      <span class="servico-desc">Sala equipada para todos os níveis, da primeira repetição ao treino avançado.</span>
+    </li>
+    <li class="servico-item">
+      <span class="servico-num">—</span>
+      <span class="servico-name">Personal Training</span>
+      <span class="servico-desc">Programa à tua medida com treinador dedicado, semana após semana.</span>
+    </li>
+    <li class="servico-item">
+      <span class="servico-num">—</span>
+      <span class="servico-name">Aulas de Grupo</span>
+      <span class="servico-desc">Mais de 15 aulas semanais — yoga, HIIT, pilates, spinning e muito mais.</span>
+    </li>
+    <li class="servico-item">
+      <span class="servico-num">—</span>
+      <span class="servico-name">Treino Funcional</span>
+      <span class="servico-desc">Área dedicada ao movimento funcional e crosstraining com equipamento profissional.</span>
+    </li>
+    <li class="servico-item">
+      <span class="servico-num">—</span>
+      <span class="servico-name">Nutrição</span>
+      <span class="servico-desc">Acompanhamento nutricional integrado que complementa cada sessão de treino.</span>
+    </li>
+  </ul>
+</section>
+<section id="planos">
+  <div class="planos-header">
+    <h2 class="planos-title">Planos</h2>
+    <span class="planos-sub">Escolhe o teu ritmo</span>
+  </div>
+  <div class="planos-grid">
+    <div class="plano">
+      <p class="plano-nome">Básico</p>
+      <div class="plano-price"><sup>€</sup>29<sub>/mês</sub></div>
+      <ul class="plano-features">
+        <li>Acesso à sala de musculação</li>
+        <li>Horário completo</li>
+        <li>App de acompanhamento</li>
+        <li>Avaliação inicial</li>
+      </ul>
+      <a href="#contacto" class="plano-cta">Aderir</a>
+    </div>
+    <div class="plano destaque">
+      <p class="plano-nome">Studio</p>
+      <div class="plano-price"><sup>€</sup>49<sub>/mês</sub></div>
+      <ul class="plano-features">
+        <li>Tudo do plano Básico</li>
+        <li>Aulas de grupo ilimitadas</li>
+        <li>2 sessões PT por mês</li>
+        <li>Consulta nutricional</li>
+      </ul>
+      <a href="#contacto" class="plano-cta">Aderir</a>
+    </div>
+    <div class="plano">
+      <p class="plano-nome">Total</p>
+      <div class="plano-price"><sup>€</sup>79<sub>/mês</sub></div>
+      <ul class="plano-features">
+        <li>Tudo do plano Studio</li>
+        <li>PT sessões ilimitadas</li>
+        <li>Plano nutricional mensal</li>
+        <li>Acesso 24/7</li>
+      </ul>
+      <a href="#contacto" class="plano-cta">Aderir</a>
+    </div>
+  </div>
+</section>
+<section id="contacto">
+  <div class="contacto-esq">
+    <h2 class="contacto-title">Pronto<br>para<br>começar?</h2>
+    <div class="contacto-info">
+      <div><span class="ci-label">Localização</span><span class="ci-val">Viseu, Portugal</span></div>
+      <div><span class="ci-label">Instagram</span><span class="ci-val">@routinefitnesstudio</span></div>
+      <div><span class="ci-label">Horário</span><span class="ci-val">Seg–Sex 6h–22h · Sáb–Dom 8h–18h</span></div>
+    </div>
+  </div>
+  <div class="contacto-dir">
+    <span class="form-label">Envia-nos uma mensagem</span>
+    <form onsubmit="submitForm(event)">
+      <input class="form-input" type="text" placeholder="Nome" required/>
+      <input class="form-input" type="email" placeholder="Email" required/>
+      <input class="form-input" type="tel" placeholder="Telemóvel (opcional)"/>
+      <textarea class="form-input" placeholder="Mensagem…"></textarea>
+      <button class="form-btn" type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <span class="footer-word">routine</span>
+  <span class="footer-copy">© 2025 Routine Fitness Studio · Viseu</span>
+  <span class="footer-ig"><a href="https://www.instagram.com/routinefitnesstudio/" target="_blank" rel="noopener">Instagram ↗</a></span>
+</footer>
+<script>
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.servico-item,.plano').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-btn');
+  btn.textContent = 'Enviado ✓';
+  btn.style.background = '#1A1008';
+  btn.style.color = '#D4924E';
+  setTimeout(() => { btn.textContent = 'Enviar'; btn.style.background=''; btn.style.color=''; e.target.reset(); }, 3000);
+}
+const items = document.querySelectorAll('.servico-item');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((en,i) => {
+    if(en.isIntersecting){ setTimeout(()=>en.target.style.opacity='1',i*80); obs.unobserve(en.target); }
+  });
+},{threshold:0.1});
+items.forEach(el => { el.style.opacity='0'; el.style.transition='opacity .5s'; obs.observe(el); });
+</script>
+</body>
+</html>
