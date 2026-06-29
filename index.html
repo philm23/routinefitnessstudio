@@ -462,19 +462,11 @@ function submitForm(e) {
 }
 
 // Scroll reveal — serviços
-const items = document.querySelectorAll('.servico-item');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((en, i) => {
-    if (en.isIntersecting) {
-      setTimeout(() => en.target.style.opacity = '1', i * 80);
-      obs.unobserve(en.target);
-    }
-  });
-}, { threshold: 0.1 });
-items.forEach(el => {
-  el.style.transition = 'opacity .5s';
-  obs.observe(el);
-});
+function toggleServico(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.servico-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
 
 // Scroll reveal — galeria
 const gItems = document.querySelectorAll('.galeria-item');
