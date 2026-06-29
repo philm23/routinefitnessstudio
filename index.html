@@ -90,13 +90,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .servicos-label{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.45;margin-bottom:3rem;display:block}
 .servicos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
 
-.servico-card{border-radius:2px;overflow:visible;cursor:pointer}
+.servico-card{border-radius:2px;overflow:hidden;cursor:pointer;background:var(--amber)}
 .servico-card:nth-child(1){background:#A85C2A}
-.servico-card:nth-child(2){background:#8B4A1F}
-.servico-card:nth-child(3){background:#C47A3A}
-.servico-card:nth-child(4){background:#7A3F18}
-.servico-card:nth-child(5){background:#B56830}
-
+.servico-card:nth-child(2){background:#A85C2A}
+.servico-card:nth-child(3){background:#A85C2A}
+.servico-card:nth-child(4){background:#A85C2A}
+.servico-card:nth-child(5){background:#A85C2A}
 .servico-header{display:flex;align-items:center;justify-content:space-between;padding:2rem 1.8rem;transition:padding .4s ease}
 .servico-num{font-size:.65rem;letter-spacing:.2em;color:rgba(239,224,200,.35)}
 .servico-name{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--parchment);line-height:1}
@@ -105,8 +104,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .servico-icon::before{width:14px;height:1.5px;top:50%;left:50%;transform:translate(-50%,-50%)}
 .servico-icon::after{width:1.5px;height:14px;top:50%;left:50%;transform:translate(-50%,-50%)}
 .servico-card.open .servico-icon::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
-.servico-body{display:none}
-.servico-card.open .servico-body{display:block}
+.servico-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.servico-card.open .servico-body{max-height:300px}
 .servico-body-inner{padding:0 1.8rem 2rem;border-top:1px solid rgba(239,224,200,.15)}
 .servico-body-inner p{font-size:.88rem;line-height:1.8;color:rgba(239,224,200,.8);padding-top:1.2rem;margin-bottom:1rem}
 .servico-tag{display:inline-block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(239,224,200,.3);color:rgba(239,224,200,.5);padding:.3rem .75rem}
@@ -463,8 +462,15 @@ function submitForm(e) {
 // Scroll reveal — serviços
 function toggleServico(card) {
   const isOpen = card.classList.contains('open');
-  document.querySelectorAll('.servico-card').forEach(c => c.classList.remove('open'));
-  if (!isOpen) card.classList.add('open');
+  document.querySelectorAll('.servico-card').forEach(c => {
+    c.classList.remove('open');
+    c.querySelector('.servico-body').style.maxHeight = null;
+  });
+  if (!isOpen) {
+    card.classList.add('open');
+    card.querySelector('.servico-body').style.maxHeight =
+      card.querySelector('.servico-body-inner').scrollHeight + 'px';
+  }
 }
   
 // Scroll reveal — galeria
