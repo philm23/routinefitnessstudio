@@ -461,8 +461,13 @@ function submitForm(e) {
 
 // Scroll reveal — serviços
 function toggleServico(card) {
-  const isOpen = card.classList.contains('open');
+  const body = card.querySelector('.servico-body');
+  const inner = card.querySelector('.servico-body-inner');
+  console.log('body:', body);
+  console.log('inner:', inner);
+  console.log('scrollHeight:', inner ? inner.scrollHeight : 'null');
   
+  const isOpen = card.classList.contains('open');
   document.querySelectorAll('.servico-card').forEach(c => {
     c.classList.remove('open');
     c.querySelector('.servico-body').style.maxHeight = null;
@@ -470,8 +475,7 @@ function toggleServico(card) {
   
   if (!isOpen) {
     card.classList.add('open');
-    card.querySelector('.servico-body').style.maxHeight =
-      card.querySelector('.servico-body-inner').scrollHeight + 'px';
+    body.style.maxHeight = inner.scrollHeight + 'px';
   }
 }
   
